@@ -15,8 +15,10 @@ LEFT_CLICK = 'j'
 RIGHT_CLICK = 'l'
 
 TWIG_MATCH_VAR = 0.7  # 树枝匹配度阈值
-END_MATCH_VAR = 0.6  # 游戏结束匹配度阈值
 INTERVAL = 0.11  # 砍树间隔
+
+END_VAR = 0.6
+END_MATCH_VAR = 0.9  # 游戏结束匹配度阈值
 
 
 def log(*args):
@@ -149,8 +151,8 @@ class Game:
                     log(f'检测{"左" if self.left else "右"}边树枝')
                     log('树枝匹配度:', match_val)
 
-                    if match_val < END_MATCH_VAR:
-                        if self.match_one(img, self.templates.end) > TWIG_MATCH_VAR:
+                    if match_val < END_VAR:
+                        if self.match_one(img, self.templates.end) > END_MATCH_VAR:
                             self.running = False
                             print('游戏结束')
 
