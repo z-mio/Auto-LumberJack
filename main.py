@@ -16,6 +16,7 @@ RIGHT_CLICK = 'l'
 
 TWIG_MATCH_VAR = 0.7  # 树枝匹配度阈值
 END_MATCH_VAR = 0.6  # 游戏结束匹配度阈值
+INTERVAL = 0.11  # 砍树间隔
 
 
 def log(*args):
@@ -136,7 +137,7 @@ class Game:
 
             self.running = True
             while self.running:
-                time.sleep(0.11)  # 等游戏动画结束
+                time.sleep(INTERVAL)  # 等游戏动画结束
                 try:
                     img = self.screen.grab()
                     # 保存
@@ -149,7 +150,7 @@ class Game:
                     log('树枝匹配度:', match_val)
 
                     if match_val < END_MATCH_VAR:
-                        if self.match_one(img, self.templates.end) > 0.9:
+                        if self.match_one(img, self.templates.end) > TWIG_MATCH_VAR:
                             self.running = False
                             print('游戏结束')
 
