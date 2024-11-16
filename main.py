@@ -140,7 +140,7 @@ class Game:
                 try:
                     img = self.screen.grab()
                     # 保存
-                    cv2.imwrite(f'temp/{time.time_ns()}.png', img)
+                    # cv2.imwrite(f'temp/{time.time_ns()}.png', img)
                     # 选择模板并匹配
                     template = self.templates.left_twig if self.left else self.templates.right_twig
                     match_val = self.match_one(img, template)
