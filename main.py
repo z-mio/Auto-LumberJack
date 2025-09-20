@@ -8,6 +8,9 @@ import threading
 from dataclasses import dataclass
 import queue
 
+# 启用 OpenCV 优化
+cv2.setUseOptimized(True)
+
 DEBUG = False
 
 # 自定义左键和右键
@@ -15,7 +18,7 @@ LEFT_CLICK = 'j'
 RIGHT_CLICK = 'l'
 
 TWIG_MATCH_VAR = 0.7  # 树枝匹配度阈值
-INTERVAL = 0.11  # 砍树间隔
+INTERVAL = 0.095  # 砍树间隔 0.11稳定 0.097激进
 
 END_VAR = 0.6
 END_MATCH_VAR = 0.9  # 游戏结束匹配度阈值
@@ -53,7 +56,8 @@ class ScreenCapture:
         self._lock = threading.Lock()
         # 获取初始显示器信息
         with mss() as sct:
-            monitor = sct.monitors[0]
+            # 仅使用主屏幕（通常为索引 1）而不是所有屏幕的虚拟桌面（索引 0）
+            monitor = sct.monitors[1]
             # 计算ROI
             self.roi = {
                 'top': monitor['top'] + monitor['height'] // 4,
