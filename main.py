@@ -18,7 +18,7 @@ LEFT_CLICK = 'j'
 RIGHT_CLICK = 'l'
 
 TWIG_MATCH_VAR = 0.7  # 树枝匹配度阈值
-INTERVAL = 0.095  # 砍树间隔 0.11稳定 0.097激进
+INTERVAL = 0.11  # 砍树间隔 0.11稳定 0.097激进
 
 END_VAR = 0.6
 END_MATCH_VAR = 0.9  # 游戏结束匹配度阈值
